@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class ScanValues {
+    private static final Scanner scanner = new Scanner(System.in);
     public static int scanIntegerValue() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             if (scanner.hasNextInt()) return scanner.nextInt();
             else {
@@ -12,19 +12,23 @@ public class ScanValues {
         }
     }
 
-    public static double scanDoubleValue() {
-        Scanner scanner = new Scanner(System.in);
+    public static double scanDoublePositiveValue() {
         while (true) {
-            if (scanner.hasNextDouble()) return Math.floor(scanner.nextDouble() * 100) / 100;
+            if (scanner.hasNextDouble()) {
+                double scannedValue = scanner.nextDouble();
+                if (scannedValue > 0) return Math.floor(scannedValue * 100) / 100;
+                else {
+                    System.out.println("Стоимость не может быть отрицательной или нулевой, введите снова.");
+                    scanner.nextLine();
+                }
+            }
             else {
                 System.out.println("Некорректный ввод! Введите число с разделителем, например 12.34:");
-                scanner.nextLine();
             }
         }
     }
 
     public static String scanStringValue() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             String result = scanner.next();
             if (!result.isEmpty()) return result;

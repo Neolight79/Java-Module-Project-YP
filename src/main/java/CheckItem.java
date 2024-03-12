@@ -1,6 +1,6 @@
 public class CheckItem {
-    String itemName;
-    double value;
+    final String itemName;
+    final double value;
 
     public CheckItem(String item, double value) {
         this.itemName = item;

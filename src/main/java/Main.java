@@ -14,15 +14,15 @@ public class Main {
         System.out.println("Вы получите список товаров и сумму для оплаты каждым участником.\n");
 
         // Стадия 2: Цикл получения количества участников
-        System.out.println("Введите количество участников (2-999):");
+        System.out.println("Введите количество участников (не меньше 2х):");
         while (true) {
             int persons = ScanValues.scanIntegerValue();
-            if (persons > 1 && persons < 1000) {
+            if (persons > 1) {
                 System.out.printf("Счет будет разделен на %d %s%n", persons, WordEndings.convertPersons(persons));
                     // Сообщаем калькулятору количество персон для разделения счета
                     calculator.setPersons(persons);
                     break;
-                } else System.out.printf("Введенное число %d неверно! Диапазон от 2 до 999:%n", persons);
+                } else System.out.printf("Введенное число %d неверно! Требуется число больше 2х.", persons);
         }
 
         // Стадия 3: Добавляем товары и суммы
@@ -31,7 +31,7 @@ public class Main {
             System.out.println("Введите название товара:");
             String item = ScanValues.scanStringValue();
             System.out.println("Теперь введите стоимость, например 12.34:");
-            double value = ScanValues.scanDoubleValue();
+            double value = ScanValues.scanDoublePositiveValue();
             // Добавляем полученные значения в калькулятор и вывод сообщения об их добавлении
             CheckItem newItem = new CheckItem(item, value);
             calculator.addItem(newItem);
